@@ -90,6 +90,21 @@
     });
   }
 
+  function bindEmailLinks() {
+    const emailLinks = document.querySelectorAll("a.js-email-link");
+    emailLinks.forEach((link) => {
+      link.addEventListener("click", (event) => {
+        const href = link.getAttribute("href") || "";
+        if (!href.startsWith("mailto:")) {
+          return;
+        }
+
+        event.preventDefault();
+        window.location.href = href;
+      });
+    });
+  }
+
   function bindMenuToggle() {
     const toggle = document.querySelector(".menu-toggle");
     const nav = document.querySelector(".nav-links");
@@ -134,6 +149,7 @@
   setWhatsappLinks(serviceKey);
   bindServiceButtons();
   bindDirectWhatsAppOpen();
+  bindEmailLinks();
   bindMenuToggle();
   bindFaqTracking();
   setCurrentYear();
